@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-import epita.com.veliba.dummy.DummyContent;
+import epita.com.veliba.station.StationContent;
 
 import java.util.List;
 
@@ -71,15 +71,15 @@ public class StationListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.ITEMS));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(StationContent.ITEMS));
     }
 
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<DummyContent.DummyItem> mValues;
+        private final List<StationContent.StationItem> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<DummyContent.DummyItem> items) {
+        public SimpleItemRecyclerViewAdapter(List<StationContent.StationItem> items) {
             mValues = items;
         }
 
@@ -93,18 +93,19 @@ public class StationListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mNameView.setText(mValues.get(position).content);
+            holder.mNameView.setText(mValues.get(position).fields.name);
 
             int availableColor = ContextCompat.getColor(getBaseContext(), R.color.green);
             int notAvailableColor = ContextCompat.getColor(getBaseContext(), R.color.red);
-            holder.mStatusView.setColorFilter((position % 2 == 0) ? availableColor : notAvailableColor);
+            boolean isOpen = mValues.get(position).fields.status.value;
+            holder.mStatusView.setColorFilter(isOpen ? availableColor : notAvailableColor);
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mTwoPane) {
                         Bundle arguments = new Bundle();
-                        arguments.putString(StationDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                        arguments.putString(StationDetailFragment.ARG_ITEM_ID, holder.mItem.recordId);
                         StationDetailFragment fragment = new StationDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
@@ -113,7 +114,7 @@ public class StationListActivity extends AppCompatActivity {
                     } else {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, StationDetailActivity.class);
-                        intent.putExtra(StationDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                        intent.putExtra(StationDetailFragment.ARG_ITEM_ID, holder.mItem.recordId);
 
                         context.startActivity(intent);
                     }
@@ -130,7 +131,7 @@ public class StationListActivity extends AppCompatActivity {
             public final View mView;
             public final ImageView mStatusView;
             public final TextView mNameView;
-            public DummyContent.DummyItem mItem;
+            public StationContent.StationItem mItem;
 
             public ViewHolder(View view) {
                 super(view);
