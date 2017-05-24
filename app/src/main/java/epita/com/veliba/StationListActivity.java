@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 
 import epita.com.veliba.station.StationContent;
+import epita.com.veliba.station.StationItem;
 
 import java.util.List;
 
@@ -77,9 +78,9 @@ public class StationListActivity extends AppCompatActivity {
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<StationContent.StationItem> mValues;
+        private final List<StationItem> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<StationContent.StationItem> items) {
+        public SimpleItemRecyclerViewAdapter(List<StationItem> items) {
             mValues = items;
         }
 
@@ -131,7 +132,7 @@ public class StationListActivity extends AppCompatActivity {
             public final View mView;
             public final ImageView mStatusView;
             public final TextView mNameView;
-            public StationContent.StationItem mItem;
+            public StationItem mItem;
 
             public ViewHolder(View view) {
                 super(view);

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import epita.com.veliba.station.StationContent;
+import epita.com.veliba.station.StationItem;
 
 /**
  * A fragment representing a single Station detail screen.
@@ -26,7 +27,7 @@ public class StationDetailFragment extends Fragment {
     /**
      * The dummy content this fragment is presenting.
      */
-    private StationContent.StationItem mItem;
+    private StationItem mItem;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
