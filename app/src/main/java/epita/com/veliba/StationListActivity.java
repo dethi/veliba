@@ -5,11 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.*;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -91,8 +93,11 @@ public class StationListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
+            holder.mNameView.setText(mValues.get(position).content);
+
+            int availableColor = ContextCompat.getColor(getBaseContext(), R.color.green);
+            int notAvailableColor = ContextCompat.getColor(getBaseContext(), R.color.red);
+            holder.mStatusView.setColorFilter((position % 2 == 0) ? availableColor : notAvailableColor);
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -123,20 +128,20 @@ public class StationListActivity extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
-            public final TextView mIdView;
-            public final TextView mContentView;
+            public final ImageView mStatusView;
+            public final TextView mNameView;
             public DummyContent.DummyItem mItem;
 
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
-                mIdView = (TextView) view.findViewById(R.id.id);
-                mContentView = (TextView) view.findViewById(R.id.content);
+                mStatusView = (ImageView) view.findViewById(R.id.status);
+                mNameView = (TextView) view.findViewById(R.id.name);
             }
 
             @Override
             public String toString() {
-                return super.toString() + " '" + mContentView.getText() + "'";
+                return super.toString() + " '" + mNameView.getText() + "'";
             }
         }
     }
