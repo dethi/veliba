@@ -106,7 +106,7 @@ public class StationListActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if (mTwoPane) {
                         Bundle arguments = new Bundle();
-                        arguments.putString(StationDetailFragment.ARG_ITEM_ID, holder.mItem.recordId);
+                        arguments.putString(StationDetailFragment.ARG_ITEM_ID, holder.mItem.id);
                         StationDetailFragment fragment = new StationDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
@@ -115,7 +115,7 @@ public class StationListActivity extends AppCompatActivity {
                     } else {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, StationDetailActivity.class);
-                        intent.putExtra(StationDetailFragment.ARG_ITEM_ID, holder.mItem.recordId);
+                        intent.putExtra(StationDetailFragment.ARG_ITEM_ID, holder.mItem.id);
 
                         context.startActivity(intent);
                     }

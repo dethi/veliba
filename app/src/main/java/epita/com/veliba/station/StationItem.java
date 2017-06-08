@@ -6,15 +6,15 @@ import java.util.Date;
 
 public class StationItem {
     @SerializedName("recordid")
-    public String recordId;
+    public String id;
 
     public Fields fields;
 
     @Override
     public String toString() {
-        return String.format("StationItem{recordId: %s, status: %s, bikeStands: %d/%d, name: %s," +
-                        "address: %s, lastUpdate: %s}", recordId, fields.status, fields.bikeStands,
-                fields.availableBikeStands, fields.name, fields.address, fields.lastUpdate);
+        return String.format("StationItem{id: %s, status: %s, bikeStands: %d/%d, name: %s," +
+                        "address: %s, lastUpdate: %s}", id, fields.status, fields.bikeStands,
+                        fields.availableBikeStands, fields.name, fields.address, fields.lastUpdate);
     }
 
     public class Fields {

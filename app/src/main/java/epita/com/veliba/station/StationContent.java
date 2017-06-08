@@ -1,6 +1,5 @@
 package epita.com.veliba.station;
 
-import com.google.gson.annotations.SerializedName;
 import epita.com.veliba.api.VelibService;
 import epita.com.veliba.api.SearchResponse;
 import retrofit2.Call;
@@ -49,6 +48,6 @@ public class StationContent {
 
     private static void addItem(StationItem item) {
         ITEMS.add(item);
-        //ITEM_MAP.put(item.id, item);
+        ITEM_MAP.put(item.id, item);
     }
 }
