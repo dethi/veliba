@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
+import android.view.View;
+
+import epita.com.veliba.station.StationContent;
+import epita.com.veliba.station.StationItem;
 
 /**
  * An activity representing a single Station detail screen. This
@@ -29,10 +32,34 @@ public class StationDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "chabro_a\ndeutsc_t", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
+
+        getIntent().getStringExtra(StationDetailFragment.ARG_ITEM_ID);
+
+        final StationItem mItem;
+
+        Object object = getIntent().getStringExtra(StationDetailFragment.ARG_ITEM_ID);
+
+        if (object != null) {
+            mItem = StationContent.ITEM_MAP.get(object);
+
+            if (mItem != null) {
+                FloatingActionButton fabShare = (FloatingActionButton) findViewById(R.id.fab_share);
+                fabShare.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Station velib");
+                        sharingIntent.putExtra(Intent.EXTRA_TEXT, mItem.fields.name);
+                        sharingIntent.setType("text/plain");
+                        startActivity(Intent.createChooser(sharingIntent, "SHARE_TO"));
+                    }
+                });
+            }
+        }
 
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
