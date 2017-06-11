@@ -1,114 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="fill_parent"
-              android:id="@+id/container"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:padding="20dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
 
 
-    <TextView android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:gravity="center"
-              android:paddingLeft="10dp"
-              android:id="@+id/station_name"
-              style="?android:attr/textAppearanceLarge"
-              xmlns:android="http://schemas.android.com/apk/res/android" />
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/station_id"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="04001" />
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/station_name"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="NOTRE DAME" />
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center_vertical"
-            android:paddingTop="60dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="40dp">
 
-        <TextView android:layout_width="wrap_content"
-                  android:layout_height="match_parent"
-                  android:text="Status : "
-                  android:gravity="center_vertical"
-                  android:paddingLeft="10dp"
-                  style="?android:attr/textAppearanceLarge"
-                  xmlns:android="http://schemas.android.com/apk/res/android" />
-        <TextView android:layout_width="wrap_content"
-                  android:layout_height="match_parent"
-                  android:gravity="center_vertical"
-                  android:id="@+id/station_status"
-                  style="?android:attr/textAppearanceLarge"
-                  xmlns:android="http://schemas.android.com/apk/res/android" />
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            style="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/label_status" />
+
+        <ImageView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:tint="@color/success"
+            app:srcCompat="@drawable/ic_fiber_manual_record_black_24dp" />
     </LinearLayout>
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="20dp">
 
-        <TextView android:layout_width="wrap_content"
-                  android:layout_height="match_parent"
-                  android:id="@+id/available_bike_stands"
-                  android:gravity="center_vertical"
-                  android:paddingLeft="10dp"
-                  style="?android:attr/textAppearanceLarge"
-                  xmlns:android="http://schemas.android.com/apk/res/android" />
-        <TextView android:layout_width="wrap_content"
-                  android:layout_height="match_parent"
-                  android:text="/"
-                  android:gravity="center_vertical"
-                  android:paddingLeft="10dp"
-                  xmlns:android="http://schemas.android.com/apk/res/android" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
+
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/available_bike_stands"
+            style="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            tools:text="5" />
+
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="/" />
+
         <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/bike_stands"
-                style="?android:attr/textAppearanceLarge"
-                android:paddingLeft="10dp"/>
-        <TextView android:layout_width="wrap_content"
-                  android:layout_height="match_parent"
-                  android:text="places dispo"
-                  android:gravity="center_vertical"
-                  android:paddingLeft="10dp"
-                  xmlns:android="http://schemas.android.com/apk/res/android" />
+            android:id="@+id/bike_stands"
+            style="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            tools:text="32" />
+
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="@string/label_place" />
     </LinearLayout>
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp">
+
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            style="?android:attr/textAppearanceLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp">
+            android:gravity="top"
+            android:text="@string/label_address" />
 
         <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:id="@+id/address"
-                  style="?android:attr/textAppearanceLarge"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:gravity="center"
-                  android:paddingLeft="10dp"
-                  android:paddingTop="40dp"
-                  tools:context="com.epita.mti.bikeit.StationDetailFragment" />
+            android:id="@+id/address"
+            style="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="20dp"
+            android:textAlignment="center"
+            tools:context="com.epita.veliba.StationDetailFragment"
+            tools:text="10 RUE D'ARCOLE\n75004 PARIS" />
     </LinearLayout>
+
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:gravity="center_horizontal|bottom"
-            android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|bottom"
+        android:orientation="horizontal">
 
         <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:gravity="center_vertical|bottom"
-                  android:paddingLeft="10dp"
-                  android:text="Mise à jour : " />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/label_last_update" />
 
         <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:id="@+id/last_update"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:gravity="center_vertical|bottom"
-                  android:paddingLeft="10dp" />
+            android:id="@+id/last_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            tools:text="09:32:03 11/06/2017" />
     </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:tint="@color/colorPrimaryDark"
+        app:backgroundTint="@color/colorPrimary"
+        app:layout_anchor="@id/container"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@drawable/ic_share_black_24dp" />
 
 
 </LinearLayout>

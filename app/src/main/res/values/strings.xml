@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">Veliba</string>
     <string name="title_station_detail">Station Detail</string>
-    <string name="action_search">Search</string>
-    <string name="search_hint">Search for stations…</string>
+    <string name="share_to">Share...</string>
+    <string name="label_status">Status: </string>
+    <string name="label_place">spaces</string>
+    <string name="label_address">Address: </string>
+    <string name="label_last_update">Last update:</string>
+    <string name="search_title">Search</string>
+    <string name="search_hint">Search for station name</string>
+    <string name="group_title">Le groupe</string>
+    <string name="group_alert">Made in Paris by:\n\n - Alexandre Chabrolin (chabro_a)\n - Thibault Deutsch (deutsc_t)</string>
 </resources>
