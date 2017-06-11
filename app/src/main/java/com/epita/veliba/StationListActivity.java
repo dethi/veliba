@@ -15,16 +15,22 @@ import android.view.MenuItem;
 
 import com.epita.veliba.service.StationItem;
 import com.epita.veliba.utils.Consumer;
+import com.epita.veliba.utils.EndlessRecyclerViewScrollListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.epita.veliba.service.Service.listMoreStation;
 import static com.epita.veliba.service.Service.listStation;
 
 public class StationListActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private RecyclerView mRecyclerView;
     private StationRecyclerViewAdapter mAdapter;
+    private EndlessRecyclerViewScrollListener mScrollListener;
+
+    private boolean isSearching = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +69,21 @@ public class StationListActivity extends AppCompatActivity implements SearchView
                     });
             builder.create().show();
         }
+
+        mScrollListener = new EndlessRecyclerViewScrollListener(mRecyclerView.getLayoutManager()) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                if (!isSearching) {
+                    listMoreStation(new Consumer<List<StationItem>>() {
+                        @Override
+                        public void accept(List<StationItem> stations) {
+                            mAdapter.setData(stations);
+                        }
+                    });
+                }
+            }
+        };
+        mRecyclerView.addOnScrollListener(mScrollListener);
     }
 
     @Override
@@ -103,7 +124,9 @@ public class StationListActivity extends AppCompatActivity implements SearchView
 
     @Override
     public boolean onQueryTextChange(String query) {
+        isSearching = !query.isEmpty();
         mAdapter.setSearch(query);
+        mScrollListener.resetState();
         return true;
     }
 

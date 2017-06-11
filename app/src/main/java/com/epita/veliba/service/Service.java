@@ -35,7 +35,7 @@ public final class Service {
             callback.accept(stations);
         } else {
             if (fetchingData.compareAndSet(false, true)) {
-                Call<SearchResponse> listStationRequest = velibService.listStation(lastIndex, 100);
+                Call<SearchResponse> listStationRequest = velibService.listStation(lastIndex, 20);
                 listStationRequest.enqueue(new Callback<SearchResponse>() {
                     @Override
                     public void onResponse(@NonNull Call<SearchResponse> call, @NonNull Response<SearchResponse> response) {
@@ -57,6 +57,32 @@ public final class Service {
                     }
                 });
             }
+        }
+    }
+
+    public static void listMoreStation(final Consumer<List<StationItem>> callback) {
+        if (fetchingData.compareAndSet(false, true)) {
+            Call<SearchResponse> listStationRequest = velibService.listStation(lastIndex, 20);
+            listStationRequest.enqueue(new Callback<SearchResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<SearchResponse> call, @NonNull Response<SearchResponse> response) {
+                    if (response.isSuccessful()) {
+                        SearchResponse data = response.body();
+                        if (data != null) {
+                            stations.addAll(data.records);
+                            lastIndex += data.records.size();
+                        }
+
+                        fetchingData.set(false);
+                        callback.accept(stations);
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<SearchResponse> call, @NonNull Throwable t) {
+                    fetchingData.set(false);
+                }
+            });
         }
     }
 }

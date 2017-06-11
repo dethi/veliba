@@ -26,8 +26,8 @@
         </activity>
         <activity
             android:name="com.epita.veliba.StationDetailActivity"
-            android:label="@string/title_station_detail"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_station_detail"
             android:parentActivityName="com.epita.veliba.StationListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

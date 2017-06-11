@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 public class StationRecyclerViewAdapter extends RecyclerView.Adapter<StationViewHolder> {
 
     public static List<Station> mValues = new ArrayList<>();
-    public static List<Station> sValues;
+    public static List<Station> sValues = new ArrayList<>();
 
     public StationRecyclerViewAdapter() {
         mValues = new ArrayList<>();
@@ -27,7 +27,7 @@ public class StationRecyclerViewAdapter extends RecyclerView.Adapter<StationView
     }
 
     public void setData(List<StationItem> data) {
-        mValues = new ArrayList<>();
+        mValues.clear();
         int index = 0;
         for (StationItem r : data) {
             mValues.add(new Station(index++, r));
@@ -36,7 +36,7 @@ public class StationRecyclerViewAdapter extends RecyclerView.Adapter<StationView
     }
 
     public void setSearch(String query) {
-        sValues = new ArrayList<>();
+        sValues.clear();
 
         query = query.trim();
         if (query.isEmpty())
