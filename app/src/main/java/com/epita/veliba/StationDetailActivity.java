@@ -64,9 +64,6 @@ public class StationDetailActivity extends AppCompatActivity {
                         });
                 builder.create().show();
                 return true;
-            case android.R.id.home:
-                navigateUpTo(new Intent(this, StationListActivity.class));
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
