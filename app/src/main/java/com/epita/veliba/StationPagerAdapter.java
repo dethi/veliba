@@ -9,17 +9,17 @@ import com.epita.veliba.service.Station;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StationsPagerAdapter extends FragmentPagerAdapter {
+public class StationPagerAdapter extends FragmentPagerAdapter {
     public List<Station> mDataset = new ArrayList<>();
 
-    public StationsPagerAdapter(FragmentManager fm, List<Station> mDataset) {
+    public StationPagerAdapter(FragmentManager fm, List<Station> mDataset) {
         super(fm);
         this.mDataset = mDataset;
     }
 
     @Override
     public Fragment getItem(int position) {
-        PlaceHolderFragment fragment = new PlaceHolderFragment();
+        StationDetailFragment fragment = new StationDetailFragment();
         fragment.setStation(mDataset.get(position));
         return fragment;
     }

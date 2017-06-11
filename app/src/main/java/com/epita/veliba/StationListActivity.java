@@ -31,7 +31,7 @@ public class StationListActivity extends AppCompatActivity implements SearchView
     private static List<StationItem> previousData = new ArrayList<>();
 
     private RecyclerView mRecyclerView;
-    private SimpleItemRecyclerViewAdapter mAdapter;
+    private StationRecyclerViewAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class StationListActivity extends AppCompatActivity implements SearchView
         assert mRecyclerView != null;
 
         // Tablet mode
-        mAdapter = new SimpleItemRecyclerViewAdapter();
+        mAdapter = new StationRecyclerViewAdapter();
         mAdapter.setData(previousData);
         mRecyclerView.setAdapter(mAdapter);
 

@@ -15,13 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class SimpleItemRecyclerViewAdapter
-        extends RecyclerView.Adapter<ViewHolder> {
+public class StationRecyclerViewAdapter
+        extends RecyclerView.Adapter<StationViewHolder> {
 
     public static List<Station> mValues;
     public static List<Station> sValues;
 
-    public SimpleItemRecyclerViewAdapter() {
+    public StationRecyclerViewAdapter() {
         mValues = new ArrayList<>();
         sValues = new ArrayList<>();
     }
@@ -46,14 +46,14 @@ public class SimpleItemRecyclerViewAdapter
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public StationViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.station_list_content, parent, false);
-        return new ViewHolder(view);
+        return new StationViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final StationViewHolder holder, int position) {
         holder.mItem = sValues.get(position);
         holder.mContentView.setText(holder.mItem.getItem().fields.name);
 

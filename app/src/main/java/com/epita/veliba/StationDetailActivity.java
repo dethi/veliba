@@ -18,7 +18,7 @@ import java.util.List;
 public class StationDetailActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
-    private StationsPagerAdapter mPagerAdapter;
+    private StationPagerAdapter mPagerAdapter;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -30,9 +30,9 @@ public class StationDetailActivity extends AppCompatActivity {
         final Intent intent = getIntent();
         final int itemId = (intent != null && intent.hasExtra("itemId")) ? Integer.parseInt(getIntent().getExtras().getString("itemId")) : 0;
 
-        List<Station> data = SimpleItemRecyclerViewAdapter.mValues;
+        List<Station> data = StationRecyclerViewAdapter.mValues;
         mViewPager = (ViewPager) findViewById(R.id.pager);
-        mPagerAdapter = new StationsPagerAdapter(getSupportFragmentManager(), data);
+        mPagerAdapter = new StationPagerAdapter(getSupportFragmentManager(), data);
         mViewPager.setAdapter(mPagerAdapter);
         mViewPager.setCurrentItem(itemId);
 

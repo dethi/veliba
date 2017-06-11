@@ -18,11 +18,11 @@ import com.epita.veliba.service.StationItem;
 
 import java.text.DateFormat;
 
-public class PlaceHolderFragment extends Fragment {
+public class StationDetailFragment extends Fragment {
 
     private StationItem mItem;
 
-    public PlaceHolderFragment() {
+    public StationDetailFragment() {
         mItem = new StationItem();
     }
 
