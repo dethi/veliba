@@ -9,8 +9,8 @@
         app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="collapseActionView|ifRoom" />
     <item
-        android:id="@+id/group_action"
+        android:id="@+id/action_about"
         android:icon="@drawable/ic_help_white_24dp"
-        android:title="@string/group_title"
+        android:title="@string/about_title_alert"
         app:showAsAction="ifRoom" />
 </menu>

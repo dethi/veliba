@@ -15,10 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class StationRecyclerViewAdapter
-        extends RecyclerView.Adapter<StationViewHolder> {
 
-    public static List<Station> mValues;
+public class StationRecyclerViewAdapter extends RecyclerView.Adapter<StationViewHolder> {
+
+    public static List<Station> mValues = new ArrayList<>();
     public static List<Station> sValues;
 
     public StationRecyclerViewAdapter() {
@@ -26,10 +26,10 @@ public class StationRecyclerViewAdapter
         sValues = new ArrayList<>();
     }
 
-    public void setData(List<StationItem> myDataset) {
+    public void setData(List<StationItem> data) {
         mValues = new ArrayList<>();
         int index = 0;
-        for (StationItem r : myDataset) {
+        for (StationItem r : data) {
             mValues.add(new Station(index++, r));
         }
         setSearch("");
@@ -37,11 +37,19 @@ public class StationRecyclerViewAdapter
 
     public void setSearch(String query) {
         sValues = new ArrayList<>();
-        for (Station s : mValues) {
-            if (query.isEmpty() || Pattern.compile(Pattern.quote(query), Pattern.CASE_INSENSITIVE).matcher(s.getItem().fields.name).find()) {
-                sValues.add(s);
+
+        query = query.trim();
+        if (query.isEmpty())
+            sValues.addAll(mValues);
+        else {
+            Pattern pattern = Pattern.compile(Pattern.quote(query), Pattern.CASE_INSENSITIVE);
+            for (Station s : mValues) {
+                if (pattern.matcher(s.getItem().fields.name).find()) {
+                    sValues.add(s);
+                }
             }
         }
+
         notifyDataSetChanged();
     }
 
@@ -57,7 +65,6 @@ public class StationRecyclerViewAdapter
         holder.mItem = sValues.get(position);
         holder.mContentView.setText(holder.mItem.getItem().fields.name);
 
-
         boolean isOpen = holder.mItem.getItem().fields.status.value;
         int color = ContextCompat.getColor(holder.mStatusView.getContext(), isOpen ? R.color.success : R.color.error);
         holder.mStatusView.setColorFilter(color);
@@ -67,7 +74,7 @@ public class StationRecyclerViewAdapter
             public void onClick(View v) {
                 Context context = v.getContext();
                 Intent i = new Intent(context, StationDetailActivity.class);
-                i.putExtra("itemId", String.valueOf(holder.mItem.getId()));
+                i.putExtra("itemId", holder.mItem.getId());
                 context.startActivity(i);
             }
         });

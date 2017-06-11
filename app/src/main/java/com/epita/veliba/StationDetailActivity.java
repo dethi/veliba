@@ -27,8 +27,7 @@ public class StationDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
-        final Intent intent = getIntent();
-        final int itemId = (intent != null && intent.hasExtra("itemId")) ? Integer.parseInt(getIntent().getExtras().getString("itemId")) : 0;
+        final int itemId = getIntent().getIntExtra("itemId", 0);
 
         List<Station> data = StationRecyclerViewAdapter.mValues;
         mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -52,9 +51,9 @@ public class StationDetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.action_group:
+            case R.id.action_about:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(R.string.group_alert)
+                builder.setMessage(R.string.about_msg_alert)
                         .setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
